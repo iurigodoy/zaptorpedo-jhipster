@@ -1,0 +1,28 @@
+{
+  "zaptorpedoApp": {
+    "campaign": {
+      "home": {
+        "title": "Campaigns",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Campaign",
+        "createOrEditLabel": "Criar ou editar Campaign",
+        "notFound": "Nenhum Campaign encontrado"
+      },
+      "created": "Um novo Campaign foi criado com o identificador {{ param }}",
+      "updated": "Um Campaign foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Campaign foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Campaign {{ id }}?"
+      },
+      "detail": {
+        "title": "Campaign"
+      },
+      "id": "ID",
+      "name": "Name",
+      "template": "Template",
+      "campaignExecution": "Campaign Execution",
+      "whatsAppSourcePhoneNumber": "Whats App Source Phone Number",
+      "menu": "Menu"
+    }
+  }
+}

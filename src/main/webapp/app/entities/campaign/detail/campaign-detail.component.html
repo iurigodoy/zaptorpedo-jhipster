@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="campaign">
+      <h2 data-cy="campaignDetailsHeading"><span jhiTranslate="zaptorpedoApp.campaign.detail.title">Campaign</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ campaign.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.campaign.name">Name</span></dt>
+        <dd>
+          <span>{{ campaign.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.campaign.template">Template</span></dt>
+        <dd>
+          <span>{{ campaign.template }}</span>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.campaign.whatsAppSourcePhoneNumber">Whats App Source Phone Number</span></dt>
+        <dd>
+          <div *ngIf="campaign.whatsAppSourcePhoneNumber">
+            <a [routerLink]="['/whats-app-source-phone-number', campaign.whatsAppSourcePhoneNumber?.id, 'view']">{{
+              campaign.whatsAppSourcePhoneNumber?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.campaign.menu">Menu</span></dt>
+        <dd>
+          <div *ngIf="campaign.menu">
+            <a [routerLink]="['/menu', campaign.menu?.id, 'view']">{{ campaign.menu?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/campaign', campaign.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-message-heading" data-cy="MessageCreateUpdateHeading" jhiTranslate="zaptorpedoApp.message.home.createOrEditLabel">
+        Create or edit a Message
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.message.body" for="field_body">Body</label>
+          <input type="text" class="form-control" name="body" id="field_body" data-cy="body" formControlName="body" />
+          <div *ngIf="editForm.get('body')!.invalid && (editForm.get('body')!.dirty || editForm.get('body')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('body')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.message.destinyPhoneNumber" for="field_destinyPhoneNumber"
+            >Destiny Phone Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="destinyPhoneNumber"
+            id="field_destinyPhoneNumber"
+            data-cy="destinyPhoneNumber"
+            formControlName="destinyPhoneNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('destinyPhoneNumber')!.invalid &&
+              (editForm.get('destinyPhoneNumber')!.dirty || editForm.get('destinyPhoneNumber')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('destinyPhoneNumber')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('destinyPhoneNumber')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.message.atendente" for="field_atendente">Atendente</label>
+          <select class="form-control" id="field_atendente" data-cy="atendente" name="atendente" formControlName="atendente">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="atendenteOption.id === editForm.get('atendente')!.value?.id ? editForm.get('atendente')!.value : atendenteOption"
+              *ngFor="let atendenteOption of atendentesSharedCollection; trackBy: trackAtendenteById"
+            >
+              {{ atendenteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="zaptorpedoApp.message.whatsAppSourcePhoneNumber"
+            for="field_whatsAppSourcePhoneNumber"
+            >Whats App Source Phone Number</label
+          >
+          <select
+            class="form-control"
+            id="field_whatsAppSourcePhoneNumber"
+            data-cy="whatsAppSourcePhoneNumber"
+            name="whatsAppSourcePhoneNumber"
+            formControlName="whatsAppSourcePhoneNumber"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                whatsAppSourcePhoneNumberOption.id === editForm.get('whatsAppSourcePhoneNumber')!.value?.id
+                  ? editForm.get('whatsAppSourcePhoneNumber')!.value
+                  : whatsAppSourcePhoneNumberOption
+              "
+              *ngFor="
+                let whatsAppSourcePhoneNumberOption of whatsAppSourcePhoneNumbersSharedCollection;
+                trackBy: trackWhatsAppSourcePhoneNumberById
+              "
+            >
+              {{ whatsAppSourcePhoneNumberOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

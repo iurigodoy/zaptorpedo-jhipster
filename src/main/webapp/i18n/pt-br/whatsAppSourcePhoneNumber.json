@@ -1,0 +1,28 @@
+{
+  "zaptorpedoApp": {
+    "whatsAppSourcePhoneNumber": {
+      "home": {
+        "title": "Whats App Source Phone Numbers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Whats App Source Phone Number",
+        "createOrEditLabel": "Criar ou editar Whats App Source Phone Number",
+        "notFound": "Nenhum Whats App Source Phone Number encontrado"
+      },
+      "created": "Um novo Whats App Source Phone Number foi criado com o identificador {{ param }}",
+      "updated": "Um Whats App Source Phone Number foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Whats App Source Phone Number foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Whats App Source Phone Number {{ id }}?"
+      },
+      "detail": {
+        "title": "Whats App Source Phone Number"
+      },
+      "id": "ID",
+      "instanceId": "Instance Id",
+      "msisdn": "Msisdn",
+      "message": "Message",
+      "campaign": "Campaign",
+      "company": "Company"
+    }
+  }
+}

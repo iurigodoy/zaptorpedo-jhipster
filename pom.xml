@@ -57,11 +57,11 @@
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
         <liquibase.version>4.3.5</liquibase.version>
         <liquibase-hibernate5.version>4.3.5</liquibase-hibernate5.version>
+        <h2.version>1.4.200</h2.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
         <archunit-junit5.version>0.19.0</archunit-junit5.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
@@ -84,7 +84,6 @@
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <jib-maven-plugin.version>3.1.1</jib-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
-        <openapi-generator-maven-plugin.version>5.1.1</openapi-generator-maven-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
         <!-- jhipster-needle-maven-property -->
@@ -156,11 +155,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>${jackson-databind-nullable.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -290,10 +284,6 @@
             <artifactId>problem-spring-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
         </dependency>
@@ -320,10 +310,6 @@
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-messaging</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
@@ -390,14 +376,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <!--
-                    Plugin that provides API-first development using openapi-generator to
-                    generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                -->
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
             </plugin>
             <!-- jhipster-needle-maven-add-plugin -->
         </plugins>
@@ -603,7 +581,7 @@
                                 <arg>/entrypoint.sh</arg>
                             </entrypoint>
                             <ports>
-                                <port>80</port>
+                                <port>8080</port>
                             </ports>
                             <environment>
                                 <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
@@ -630,12 +608,12 @@
                     <configuration>
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
-                        <driver></driver>
-                        <url></url>
+                        <driver>org.h2.Driver</driver>
+                        <url>jdbc:h2:file:${project.build.directory}/h2db/db/zaptorpedo</url>
                         <defaultSchemaName></defaultSchemaName>
                         <username>zaptorpedo</username>
                         <password></password>
-                        <referenceUrl>hibernate:spring:br.com.zaptorpedo.domain?dialect=&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
+                        <referenceUrl>hibernate:spring:br.com.zaptorpedo.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>
                         <logging>debug</logging>
                         <contexts>!test</contexts>
@@ -665,6 +643,11 @@
                             <groupId>org.javassist</groupId>
                             <artifactId>javassist</artifactId>
                             <version>${javassist.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>${h2.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -807,35 +790,6 @@
                             <goals>
                                 <goal>verify</goal>
                             </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <!--
-                        Plugin that provides API-first development using openapi-generator to
-                        generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file
-                    -->
-                    <groupId>org.openapitools</groupId>
-                    <artifactId>openapi-generator-maven-plugin</artifactId>
-                    <version>${openapi-generator-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                            <configuration>
-                                <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
-                                <generatorName>spring</generatorName>
-                                <apiPackage>br.com.zaptorpedo.web.api</apiPackage>
-                                <modelPackage>br.com.zaptorpedo.service.api.dto</modelPackage>
-                                <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                                <importMappings>Problem=org.zalando.problem.Problem</importMappings>
-                                <skipValidateSpec>false</skipValidateSpec>
-                                <configOptions>
-                                    <delegatePattern>true</delegatePattern>
-                                    <title>zaptorpedo</title>
-                                </configOptions>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -1211,19 +1165,6 @@
                                             </pluginExecutionFilter>
                                             <action>
                                                 <ignore/>
-                                            </action>
-                                        </pluginExecution>
-                                        <pluginExecution>
-                                            <pluginExecutionFilter>
-                                                <groupId>org.openapitools</groupId>
-                                                <artifactId>openapi-generator-maven-plugin</artifactId>
-                                                <versionRange>${openapi-generator-maven-plugin.version}</versionRange>
-                                                <goals>
-                                                    <goal>generate</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>

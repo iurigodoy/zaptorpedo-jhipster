@@ -1,0 +1,45 @@
+{
+  "name": "WhatsAppSourcePhoneNumber",
+  "fields": [
+    {
+      "fieldName": "instanceId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "msisdn",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "whatsAppSourcePhoneNumber",
+      "relationshipName": "message"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "whatsAppSourcePhoneNumber",
+      "relationshipName": "campaign"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "whatsAppSourcePhoneNumber",
+      "relationshipName": "company"
+    }
+  ],
+  "entityTableName": "whats_app_source_phone_number",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173745"
+}

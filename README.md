@@ -91,20 +91,6 @@ create src/main/webapp/app/my-component/my-component.component.ts
 update src/main/webapp/app/app.module.ts
 ```
 
-### Doing API-First development using openapi-generator
-
-[OpenAPI-Generator]() is configured for this application. You can generate API code from the `src/main/resources/swagger/api.yml` definition file by running:
-
-```bash
-./mvnw generate-sources
-```
-
-Then implements the generated delegate classes with `@Service` classes.
-
-To edit the `api.yml` definition file, you can use a tool such as [Swagger-Editor](). Start a local instance of the swagger-editor using docker by running: `docker-compose -f src/main/docker/swagger-editor.yml up -d`. The editor will then be reachable at [http://localhost:7742](http://localhost:7742).
-
-Refer to [Doing API-First development][] for more details.
-
 ## Building for production
 
 ### Packaging as jar
@@ -122,7 +108,7 @@ To ensure everything worked, run:
 java -jar target/*.jar
 ```
 
-Then navigate to [http://localhost:80](http://localhost:80) in your browser.
+Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
 Refer to [Using JHipster in production][] for more details.
 
@@ -229,6 +215,3 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [jasmine]: https://jasmine.github.io/2.0/introduction.html
 [leaflet]: https://leafletjs.com/
 [definitelytyped]: https://definitelytyped.org/
-[openapi-generator]: https://openapi-generator.tech
-[swagger-editor]: https://editor.swagger.io
-[doing api-first development]: https://www.jhipster.tech/documentation-archive/v7.1.0/doing-api-first-development/

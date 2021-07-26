@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="MessageHeading">
+    <span jhiTranslate="zaptorpedoApp.message.home.title">Messages</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="zaptorpedoApp.message.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-message"
+        [routerLink]="['/message/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="zaptorpedoApp.message.home.createLabel"> Create a new Message </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="messages?.length === 0">
+    <span jhiTranslate="zaptorpedoApp.message.home.notFound">No messages found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="messages && messages.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="zaptorpedoApp.message.body">Body</span></th>
+          <th scope="col"><span jhiTranslate="zaptorpedoApp.message.destinyPhoneNumber">Destiny Phone Number</span></th>
+          <th scope="col"><span jhiTranslate="zaptorpedoApp.message.atendente">Atendente</span></th>
+          <th scope="col"><span jhiTranslate="zaptorpedoApp.message.whatsAppSourcePhoneNumber">Whats App Source Phone Number</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messages; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/message', message.id, 'view']">{{ message.id }}</a>
+          </td>
+          <td>{{ message.body }}</td>
+          <td>{{ message.destinyPhoneNumber }}</td>
+          <td>
+            <div *ngIf="message.atendente">
+              <a [routerLink]="['/atendente', message.atendente?.id, 'view']">{{ message.atendente?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="message.whatsAppSourcePhoneNumber">
+              <a [routerLink]="['/whats-app-source-phone-number', message.whatsAppSourcePhoneNumber?.id, 'view']">{{
+                message.whatsAppSourcePhoneNumber?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/message', message.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/message', message.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(message)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

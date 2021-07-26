@@ -1,0 +1,39 @@
+{
+  "name": "Message",
+  "fields": [
+    {
+      "fieldName": "body",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "destinyPhoneNumber",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "atendente",
+      "otherEntityRelationshipName": "message",
+      "relationshipName": "atendente"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "whatsAppSourcePhoneNumber",
+      "otherEntityRelationshipName": "message",
+      "relationshipName": "whatsAppSourcePhoneNumber"
+    }
+  ],
+  "entityTableName": "message",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173743"
+}

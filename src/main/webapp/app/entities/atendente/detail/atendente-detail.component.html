@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="atendente">
+      <h2 data-cy="atendenteDetailsHeading"><span jhiTranslate="zaptorpedoApp.atendente.detail.title">Atendente</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ atendente.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.atendente.name">Name</span></dt>
+        <dd>
+          <span>{{ atendente.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="zaptorpedoApp.atendente.company">Company</span></dt>
+        <dd>
+          <div *ngIf="atendente.company">
+            <a [routerLink]="['/company', atendente.company?.id, 'view']">{{ atendente.company?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/atendente', atendente.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

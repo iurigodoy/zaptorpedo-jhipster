@@ -48,6 +48,21 @@ public class CacheConfiguration {
             createCache(cm, br.com.zaptorpedo.domain.User.class.getName());
             createCache(cm, br.com.zaptorpedo.domain.Authority.class.getName());
             createCache(cm, br.com.zaptorpedo.domain.User.class.getName() + ".authorities");
+            createCache(cm, br.com.zaptorpedo.domain.Company.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.Company.class.getName() + ".atendentes");
+            createCache(cm, br.com.zaptorpedo.domain.Company.class.getName() + ".whatsAppSourcePhoneNumbers");
+            createCache(cm, br.com.zaptorpedo.domain.Company.class.getName() + ".menus");
+            createCache(cm, br.com.zaptorpedo.domain.Atendente.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.Atendente.class.getName() + ".messages");
+            createCache(cm, br.com.zaptorpedo.domain.Message.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.Campaign.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.Campaign.class.getName() + ".campaignExecutions");
+            createCache(cm, br.com.zaptorpedo.domain.WhatsAppSourcePhoneNumber.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.WhatsAppSourcePhoneNumber.class.getName() + ".messages");
+            createCache(cm, br.com.zaptorpedo.domain.WhatsAppSourcePhoneNumber.class.getName() + ".campaigns");
+            createCache(cm, br.com.zaptorpedo.domain.Menu.class.getName());
+            createCache(cm, br.com.zaptorpedo.domain.Menu.class.getName() + ".campaigns");
+            createCache(cm, br.com.zaptorpedo.domain.CampaignExecution.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,37 @@
+{
+  "name": "CampaignExecution",
+  "fields": [
+    {
+      "fieldName": "body",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sheduleDttm",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "executionDttm",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "campaignExecution",
+      "relationshipName": "campaign"
+    }
+  ],
+  "entityTableName": "campaign_execution",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173747"
+}
