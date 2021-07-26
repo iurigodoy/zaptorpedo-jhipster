@@ -1,0 +1,34 @@
+{
+  "name": "Atendente",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "message",
+      "otherEntityRelationshipName": "atendente",
+      "relationshipName": "message"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "atendente",
+      "relationshipName": "company"
+    }
+  ],
+  "entityTableName": "atendente",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173742"
+}

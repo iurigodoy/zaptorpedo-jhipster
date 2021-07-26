@@ -1,0 +1,39 @@
+{
+  "name": "Menu",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "json",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "campaign",
+      "otherEntityRelationshipName": "menu",
+      "relationshipName": "campaign"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "company",
+      "otherEntityRelationshipName": "menu",
+      "relationshipName": "company"
+    }
+  ],
+  "entityTableName": "menu",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173746"
+}

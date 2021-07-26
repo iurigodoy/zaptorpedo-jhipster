@@ -13,14 +13,9 @@ function setupProxy() {
         '/auth',
         '/health',
       ],
-      target: `http${tls ? 's' : ''}://localhost:80`,
+      target: `http${tls ? 's' : ''}://localhost:8080`,
       secure: false,
       changeOrigin: tls,
-    },
-    {
-      context: ['/websocket'],
-      target: 'ws://127.0.0.1:80',
-      ws: true,
     },
   ];
   return conf;

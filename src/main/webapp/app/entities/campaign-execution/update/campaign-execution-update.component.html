@@ -1,0 +1,121 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-campaign-execution-heading"
+        data-cy="CampaignExecutionCreateUpdateHeading"
+        jhiTranslate="zaptorpedoApp.campaignExecution.home.createOrEditLabel"
+      >
+        Create or edit a Campaign Execution
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.campaignExecution.body" for="field_body">Body</label>
+          <div>
+            <div *ngIf="editForm.get('body')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('body')!.value, editForm.get('bodyContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left">{{ editForm.get('bodyContentType')!.value }}, {{ byteSize(editForm.get('body')!.value) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ body: null }); editForm.patchValue({ bodyContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_body"
+              data-cy="body"
+              (change)="setFileData($event, 'body', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="body" id="field_body" data-cy="body" formControlName="body" />
+          <input type="hidden" class="form-control" name="bodyContentType" id="field_bodyContentType" formControlName="bodyContentType" />
+          <div *ngIf="editForm.get('body')!.invalid && (editForm.get('body')!.dirty || editForm.get('body')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('body')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.campaignExecution.sheduleDttm" for="field_sheduleDttm"
+            >Shedule Dttm</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_sheduleDttm"
+              data-cy="sheduleDttm"
+              type="datetime-local"
+              class="form-control"
+              name="sheduleDttm"
+              formControlName="sheduleDttm"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.campaignExecution.executionDttm" for="field_executionDttm"
+            >Execution Dttm</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_executionDttm"
+              data-cy="executionDttm"
+              type="datetime-local"
+              class="form-control"
+              name="executionDttm"
+              formControlName="executionDttm"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="zaptorpedoApp.campaignExecution.campaign" for="field_campaign">Campaign</label>
+          <select class="form-control" id="field_campaign" data-cy="campaign" name="campaign" formControlName="campaign">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="campaignOption.id === editForm.get('campaign')!.value?.id ? editForm.get('campaign')!.value : campaignOption"
+              *ngFor="let campaignOption of campaignsSharedCollection; trackBy: trackCampaignById"
+            >
+              {{ campaignOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CampaignExecution.
+    -->
+    <changeSet id="20210726173747-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="campaign_id"
+                                 baseTableName="campaign_execution"
+                                 constraintName="fk_campaign_execution__campaign_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="campaign"/>
+    </changeSet>
+</databaseChangeLog>

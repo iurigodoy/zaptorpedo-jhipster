@@ -61,7 +61,7 @@
     "ci:frontend:test": "npm run ci:frontend:build && npm test"
   },
   "config": {
-    "backend_port": 80,
+    "backend_port": "8080",
     "default_environment": "prod",
     "packaging": "jar"
   },
@@ -85,10 +85,8 @@
     "ngx-infinite-scroll": "10.0.1",
     "ngx-webstorage": "8.0.0",
     "rxjs": "6.6.7",
-    "sockjs-client": "1.5.0",
     "swagger-ui-dist": "3.50.0",
     "tslib": "2.3.0",
-    "webstomp-client": "1.2.6",
     "zone.js": "0.11.4"
   },
   "devDependencies": {
@@ -100,7 +98,6 @@
     "@angular/service-worker": "12.0.5",
     "@types/jest": "26.0.23",
     "@types/node": "15.12.2",
-    "@types/sockjs-client": "1.5.0",
     "@typescript-eslint/eslint-plugin": "4.27.0",
     "@typescript-eslint/parser": "4.27.0",
     "browser-sync": "2.26.14",

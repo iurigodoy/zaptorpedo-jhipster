@@ -1,0 +1,26 @@
+{
+  "zaptorpedoApp": {
+    "atendente": {
+      "home": {
+        "title": "Atendentes",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Atendente",
+        "createOrEditLabel": "Criar ou editar Atendente",
+        "notFound": "Nenhum Atendente encontrado"
+      },
+      "created": "Um novo Atendente foi criado com o identificador {{ param }}",
+      "updated": "Um Atendente foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Atendente foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Atendente {{ id }}?"
+      },
+      "detail": {
+        "title": "Atendente"
+      },
+      "id": "ID",
+      "name": "Name",
+      "message": "Message",
+      "company": "Company"
+    }
+  }
+}

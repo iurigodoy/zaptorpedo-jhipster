@@ -1,0 +1,27 @@
+{
+  "zaptorpedoApp": {
+    "campaignExecution": {
+      "home": {
+        "title": "Campaign Executions",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Campaign Execution",
+        "createOrEditLabel": "Criar ou editar Campaign Execution",
+        "notFound": "Nenhum Campaign Execution encontrado"
+      },
+      "created": "Um novo Campaign Execution foi criado com o identificador {{ param }}",
+      "updated": "Um Campaign Execution foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Campaign Execution foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Campaign Execution {{ id }}?"
+      },
+      "detail": {
+        "title": "Campaign Execution"
+      },
+      "id": "ID",
+      "body": "Body",
+      "sheduleDttm": "Shedule Dttm",
+      "executionDttm": "Execution Dttm",
+      "campaign": "Campaign"
+    }
+  }
+}

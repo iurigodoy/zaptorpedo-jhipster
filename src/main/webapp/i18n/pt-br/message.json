@@ -1,0 +1,27 @@
+{
+  "zaptorpedoApp": {
+    "message": {
+      "home": {
+        "title": "Messages",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Message",
+        "createOrEditLabel": "Criar ou editar Message",
+        "notFound": "Nenhum Message encontrado"
+      },
+      "created": "Um novo Message foi criado com o identificador {{ param }}",
+      "updated": "Um Message foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Message foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Message {{ id }}?"
+      },
+      "detail": {
+        "title": "Message"
+      },
+      "id": "ID",
+      "body": "Body",
+      "destinyPhoneNumber": "Destiny Phone Number",
+      "atendente": "Atendente",
+      "whatsAppSourcePhoneNumber": "Whats App Source Phone Number"
+    }
+  }
+}

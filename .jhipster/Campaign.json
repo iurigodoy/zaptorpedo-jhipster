@@ -1,0 +1,45 @@
+{
+  "name": "Campaign",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "template",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "campaignExecution",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "campaignExecution"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "whatsAppSourcePhoneNumber",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "whatsAppSourcePhoneNumber"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "menu",
+      "otherEntityRelationshipName": "campaign",
+      "relationshipName": "menu"
+    }
+  ],
+  "entityTableName": "campaign",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173744"
+}

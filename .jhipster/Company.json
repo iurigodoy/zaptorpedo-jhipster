@@ -1,0 +1,40 @@
+{
+  "name": "Company",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "atendente",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "atendente"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "whatsAppSourcePhoneNumber",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "whatsAppSourcePhoneNumber"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "menu",
+      "otherEntityRelationshipName": "company",
+      "relationshipName": "menu"
+    }
+  ],
+  "entityTableName": "company",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["zaptorpedo"],
+  "changelogDate": "20210726173741"
+}

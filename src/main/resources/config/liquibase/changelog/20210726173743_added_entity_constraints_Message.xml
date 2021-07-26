@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Message.
+    -->
+    <changeSet id="20210726173743-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="atendente_id"
+                                 baseTableName="message"
+                                 constraintName="fk_message__atendente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="atendente"/>
+
+        <addForeignKeyConstraint baseColumnNames="whats_app_source_phone_number_id"
+                                 baseTableName="message"
+                                 constraintName="fk_message__whats_app_source_phone_number_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="whats_app_source_phone_number"/>
+    </changeSet>
+</databaseChangeLog>
