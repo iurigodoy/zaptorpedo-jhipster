@@ -1,0 +1,57 @@
+
+application {
+  config {
+    baseName zaptorpedo,
+    applicationType monolith,
+    packageName br.com.zaptorpedo,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Company {
+  name String required
+}
+
+entity Atendente {
+  name String required
+}
+
+entity Message {
+  body String required
+  destinyPhoneNumber Long required
+}
+
+entity Campaign {
+  name String required
+  template String required
+}
+
+entity WhatsAppSourcePhoneNumber {
+  instanceId String required
+  msisdn Long required
+}
+
+entity Menu {
+  name String required
+  json String required max(4000)
+}
+
+entity CampaignExecution {
+  body Blob required
+  sheduleDttm ZonedDateTime
+  executionDttm ZonedDateTime
+}
+
+relationship OneToMany {
+  Company to Atendente
+  Atendente to Message
+  WhatsAppSourcePhoneNumber to Message
+  Company to WhatsAppSourcePhoneNumber
+  WhatsAppSourcePhoneNumber to Campaign
+  Company to Menu
+  Menu to Campaign
+  Campaign to CampaignExecution
+}
